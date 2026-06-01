@@ -109,4 +109,6 @@ small calibration/reference assets. Large generated `.axmodel`, `.onnx`, and
 checkpoint files are intentionally excluded from Git and should be downloaded
 from the release asset or regenerated locally.
 
-See `docs/MIGRATION_NOTES.md` for the decisions and open items.
+See `docs/MIGRATION_NOTES.md` for the decisions and open items. See
+`docs/RUNTIME_CHAIN_AX620E.md` for how the many `.axmodel` files map to the
+AX620E/AX630C board-side runtime compile path.
