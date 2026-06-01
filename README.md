@@ -112,3 +112,6 @@ from the release asset or regenerated locally.
 See `docs/MIGRATION_NOTES.md` for the decisions and open items. See
 `docs/RUNTIME_CHAIN_AX620E.md` for how the many `.axmodel` files map to the
 AX620E/AX630C board-side runtime compile path.
+
+For the next SDK/runtime compile session, start from
+`docs/HANDOFF_NEXT_SDK_COMPILE.md`.
