@@ -1,0 +1,210 @@
++--------------------+----------------------------+
+|     Model Name     |         OnnxModel          |
++--------------------+----------------------------+
+|     Model Info     | Op Set: 13 / IR Version: 7 |
++--------------------+----------------------------+
+| IN: input_features |   float32: (1, 128, 500)   |
+|  OUT: conv_embeds  |   float32: (1, 65, 896)    |
++--------------------+----------------------------+
+|        Add         |             3              |
+|      Constant      |             14             |
+|        Conv        |             3              |
+|        Div         |             3              |
+|        Erf         |             3              |
+|       MatMul       |             1              |
+|        Mul         |             6              |
+|      Reshape       |             3              |
+|      Squeeze       |             1              |
+|     Transpose      |             3              |
+|     Unsqueeze      |             1              |
++--------------------+----------------------------+
+|     Model Size     |          42.09 MB          |
++--------------------+----------------------------+
+2026-06-01 20:16:00.570 | WARNING  | yamain.command.build:fill_default:243 - force onnxsim due to found op_type in {'ConstantOfShape', 'Constant'}
+2026-06-01 20:16:00.570 | WARNING  | yamain.command.build:fill_default:314 - apply default output processor configuration to ['conv_embeds']
+2026-06-01 20:16:00.579 | INFO     | yamain.common.util:extract_archive:149 - extract [calibration/input_features_5s.tar] to [/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/dataset/input_features]...
+2026-06-01 20:16:00.700 | INFO     | frontend.parsers.onnx_parser:parse_onnx_model_proto:87 - onnxslim...
++--------------------+----------------------------+----------------------------+
+|     Model Name     |         OnnxModel          |         OnnxModel          |
++--------------------+----------------------------+----------------------------+
+|     Model Info     | Op Set: 13 / IR Version: 7 | Op Set: 13 / IR Version: 7 |
++--------------------+----------------------------+----------------------------+
+| IN: input_features |   float32: (1, 128, 500)   |   float32: (1, 128, 500)   |
+|  OUT: conv_embeds  |   float32: (1, 65, 896)    |   float32: (1, 65, 896)    |
++--------------------+----------------------------+----------------------------+
+|        Add         |             3              |             3              |
+|      Constant      |             14             |             0              |
+|        Conv        |             3              |             3              |
+|        Div         |             3              |             3              |
+|        Erf         |             3              |             3              |
+|       MatMul       |             1              |             1              |
+|        Mul         |             6              |             6              |
+|      Reshape       |             3              |             3              |
+|      Squeeze       |             1              |             1              |
+|     Transpose      |             3              |             3              |
+|     Unsqueeze      |             1              |             1              |
++--------------------+----------------------------+----------------------------+
+|     Model Size     |          42.09 MB          |          42.09 MB          |
++--------------------+----------------------------+----------------------------+
+|    Elapsed Time    |                          0.27 s                         |
++--------------------+----------------------------+----------------------------+
+Building onnx ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+2026-06-01 20:16:02.624 | INFO     | yamain.command.build:quant:867 - save optimized onnx to [/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/frontend/optimized.onnx]
+                               Quant Config Table                               
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━┳━━━━━┓
+┃            ┃            ┃ Dataset    ┃             ┃ Tensor     ┃      ┃     ┃
+┃ Input      ┃ Shape      ┃ Directory  ┃ Data Format ┃ Format     ┃ Mean ┃ Std ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━╇━━━━━┩
+│ input_fea… │ [1, 128,   │ /home/ye/… │ Numpy       │            │ []   │ []  │
+│            │ 500]       │            │             │            │      │     │
+└────────────┴────────────┴────────────┴─────────────┴────────────┴──────┴─────┘
+Quantization calibration will be executed on cpu
+Transformer optimize level: 0
+[Warning]Reshape(/Reshape_2(TargetPlatform.UNSPECIFIED) - inputs:['/conv_out/MatMul_output_0', '/Constant_13_output_0'], outputs:['conv_embeds']) set dynamic batch failed, set shape to static shape
+Statistics Inf tensor:   0%|          | 0/1 [00:00<?, ?it/s]Statistics Inf tensor: 100%|██████████| 1/1 [00:00<00:00,  1.99it/s]Statistics Inf tensor: 100%|██████████| 1/1 [00:00<00:00,  1.98it/s]
+[20:16:06] AX Set Float Op Table Pass Running ...         
+[20:16:06] AX Outlier Recode Pass Running ...             
+Get Outlier Progress:   0%|          | 0/4 [00:00<?, ?it/s]Get Outlier Progress:  25%|██▌       | 1/4 [00:01<00:03,  1.30s/it]Get Outlier Progress:  50%|█████     | 2/4 [00:01<00:01,  1.13it/s]Get Outlier Progress:  75%|███████▌  | 3/4 [00:02<00:00,  1.33it/s]Get Outlier Progress: 100%|██████████| 4/4 [00:03<00:00,  1.45it/s]Get Outlier Progress: 100%|██████████| 4/4 [00:03<00:00,  1.30it/s]
+
+
+    Ratio of outliers in tensor【 level=Log(Max_Pertensor/Max_Perchannel) 】    
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃            ┃ Sparse     ┃            ┃            ┃             ┃            ┃
+┃            ┃ channel    ┃ level>=3   ┃ level>=4   ┃ level>=5    ┃ level>=6   ┃
+┃ Op outputs ┃ ratio      ┃ ratio      ┃ ratio      ┃ ratio       ┃ ratio      ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ /conv2d1/… │ 0.0        │ 0.6104166… │ 0.3979166… │ 0.29374998… │ 0.2208333… │
+├────────────┼────────────┼────────────┼────────────┼─────────────┼────────────┤
+│ /conv2d2/… │ 0.0        │ 0.4145833… │ 0.1500000… │ 0.06666667… │ 0.0104166… │
+├────────────┼────────────┼────────────┼────────────┼─────────────┼────────────┤
+│ /conv2d3/… │ 0.0        │ 0.4562500… │ 0.1041666… │ 0.0         │ 0.0        │
+├────────────┼────────────┼────────────┼────────────┼─────────────┼────────────┤
+│ op_1:onnx… │ 0.0        │ 0.4084821… │ 0.0904017… │ 0.00334821… │ 0.0        │
+└────────────┴────────────┴────────────┴────────────┴─────────────┴────────────┘
+[20:16:09] AX Set MixPrecision Pass Running ...           
+[20:16:09] AX Set LN Quant dtype Quant Pass Running ...   
+[20:16:09] AX Refine Operation Config Pass Running ...    
+[20:16:09] AX Tanh Operation Format Pass Running ...      
+[20:16:09] AX Confused Op Refine Pass Running ...         
+[20:16:10] AX Quantization Fusion Pass Running ...        
+[20:16:10] AX Quantization Simplify Pass Running ...      
+[20:16:10] AX Parameter Quantization Pass Running ...     
+[20:16:11] AX Runtime Calibration Pass Running ...        
+Calibration Progress(Phase 1):   0%|          | 0/4 [00:00<?, ?it/s]Calibration Progress(Phase 1):  25%|██▌       | 1/4 [00:00<00:01,  1.62it/s]Calibration Progress(Phase 1):  50%|█████     | 2/4 [00:01<00:01,  1.62it/s]Calibration Progress(Phase 1):  75%|███████▌  | 3/4 [00:01<00:00,  1.62it/s]Calibration Progress(Phase 1): 100%|██████████| 4/4 [00:02<00:00,  1.63it/s]Calibration Progress(Phase 1): 100%|██████████| 4/4 [00:02<00:00,  1.63it/s]
+Calibration Progress(Phase 2):   0%|          | 0/4 [00:00<?, ?it/s]Calibration Progress(Phase 2):  25%|██▌       | 1/4 [00:00<00:02,  1.33it/s]Calibration Progress(Phase 2):  50%|█████     | 2/4 [00:01<00:01,  1.32it/s]Calibration Progress(Phase 2):  75%|███████▌  | 3/4 [00:02<00:00,  1.30it/s]Calibration Progress(Phase 2): 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]Calibration Progress(Phase 2): 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]
+[20:16:23] AX Quantization Alignment Pass Running ...     
+[20:16:23] AX Refine Int Parameter Pass Running ...       
+[20:16:23] AX Refine Scale Pass Running ...               
+[20:16:23] AX Passive Parameter Quantization Running ...  
+[20:16:23] AX Parameter Baking Pass Running ...           
+--------- Network Snapshot ---------
+Num of Op:                    [15]
+Num of Quantized Op:          [15]
+Num of Variable:              [28]
+Num of Quantized Var:         [28]
+------- Quantization Snapshot ------
+Num of Quant Config:          [42]
+BAKED:                        [4]
+OVERLAPPED:                   [22]
+ACTIVATED:                    [8]
+SOI:                          [5]
+PASSIVE_BAKED:                [3]
+Network Quantization Finished.
+Do quant optimization
+quant.axmodel export success: 
+	/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/quant_axmodel.onnx
+	/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/quant_axmodel.data
+===>export debug_data to folder: /home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/debug/numpy/float
+===>export io data to folder: /home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/debug/io
+Building native ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+                  Quant Precision Table【EndToEnd Reference】                   
+┏━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
+┃          ┃         ┃ Output   ┃         ┃       ┃        ┃         ┃         ┃
+┃ Operator ┃  Type   ┃ Tensor   ┃  Shape  ┃ DType ┃ QDType ┃ Cosin   ┃ MSE     ┃
+┡━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━┩
+│ /Squeeze │ AxResh… │ /Squeez… │  (128,  │ FP32  │   U8   │ 0.99996 │ 0.00000 │
+│          │         │          │  500)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /Transp… │ AxTran… │ /Transp… │  (500,  │ FP32  │   U8   │ 0.99996 │ 0.00000 │
+│          │         │          │  128)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /Reshape │ AxResh… │ /Reshap… │   (5,   │ FP32  │   U8   │ 0.99996 │ 0.00000 │
+│          │         │          │  100,   │       │        │         │         │
+│          │         │          │  128)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /Transp… │ AxTran… │ /Transp… │   (5,   │ FP32  │   U8   │ 0.99996 │ 0.00000 │
+│          │         │          │  128,   │       │        │         │         │
+│          │         │          │  100)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /Unsque… │ AxResh… │ /Unsque… │ (5, 1,  │ FP32  │   U8   │ 0.99996 │ 0.00000 │
+│          │         │          │  128,   │       │        │         │         │
+│          │         │          │  100)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /conv2d… │ AxQuan… │ /conv2d… │   (5,   │ FP32  │   U8   │ 0.99996 │ 0.00000 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │ 64, 50) │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ op_2:on… │ AxQuan… │ /Mul_1_… │   (5,   │ FP32  │   U8   │ 0.99992 │ 0.00000 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │ 64, 50) │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /conv2d… │ AxQuan… │ /conv2d… │   (5,   │ FP32  │   U8   │ 0.99980 │ 0.00012 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │ 32, 25) │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ op_3:on… │ AxQuan… │ /Mul_3_… │   (5,   │ FP32  │   U8   │ 0.99917 │ 0.00002 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │ 32, 25) │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /conv2d… │ AxQuan… │ /conv2d… │   (5,   │ FP32  │   U8   │ 0.99959 │ 0.00015 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │ 16, 13) │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ op_4:on… │ AxQuan… │ /Mul_5_… │   (5,   │ FP32  │   U8   │ 0.99902 │ 0.00002 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │ 16, 13) │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /Transp… │ AxTran… │ /Transp… │ (5, 13, │ FP32  │   U8   │ 0.99902 │ 0.00002 │
+│          │         │          │  480,   │       │        │         │         │
+│          │         │          │   16)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ /Reshap… │ AxResh… │ /Reshap… │ (5, 13, │ FP32  │   U8   │ 0.99902 │ 0.00002 │
+│          │         │          │  7680)  │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ op_1:on… │ AxQuan… │ /conv_o… │ (5, 13, │ FP32  │   U8   │ 0.99969 │ 0.00019 │
+│          │         │          │  896)   │       │        │         │         │
+├──────────┼─────────┼──────────┼─────────┼───────┼────────┼─────────┼─────────┤
+│ conv_em… │ AxDequ… │ conv_em… │ (1, 65, │ FP32  │  FP32  │ 0.99969 │ 0.00019 │
+│          │         │          │  896)   │       │        │         │         │
+└──────────┴─────────┴──────────┴─────────┴───────┴────────┴─────────┴─────────┘
+2026-06-01 20:16:30.178 | INFO     | yamain.command.precision_analysis:quant_precision_analysis:403 - save precision analysis table to [/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/debug/precision_analysis_table.txt]
+2026-06-01 20:16:30.179 | INFO     | yamain.command.precision_analysis:quant_precision_analysis:411 - save precision analysis graph to [/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/conv_frontend_5s_pos_backend/quant/debug/precision_analysis.mmd]
+Building native ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+2026-06-01 20:16:30.212 | INFO     | yamain.command.build:compile_ptq_model:1169 - group 0 compiler transformation
+2026-06-01 20:16:30.213 | WARNING  | yamain.command.load_model:post_process:633 - postprocess tensor [conv_embeds]
+2026-06-01 20:16:30.214 | INFO     | yamain.command.load_model:ir_compiler_transformation:828 - use quant data as gt input: input_features, float32, (1, 128, 500)
+2026-06-01 20:16:30.329 | INFO     | yamain.command.build:compile_ptq_model:1190 - group 0 QuantAxModel macs: 10,967,347,200
+2026-06-01 20:16:30.345 | INFO     | yamain.command.build:compile_ptq_model:1325 - subgraph [0], group: 0, type: GraphType.NPU
+2026-06-01 20:16:30.346 | INFO     | yamain.compiler.npu_backend_compiler:compile:191 - compile npu subgraph [0]
+tiling op...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18/18 0:00:04
+new_ddr_tensor = []
+build op serially...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 187/187 0:00:35
+build op...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 218/218 0:00:00
+add ddr swap...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4944/4944 0:00:11
+calc input dependencies...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6404/6404 0:00:04
+calc output dependencies...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6404/6404 0:00:06
+assign eu heuristic   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6404/6404 0:00:01
+assign eu onepass   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6404/6404 0:00:00
+assign eu greedy   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6404/6404 0:00:00
+2026-06-01 20:17:39.216 | INFO     | yasched.test_onepass:results2model_gen:3204 - clear job deps
+2026-06-01 20:17:39.217 | INFO     | yasched.test_onepass:results2model_gen:3205 - max_cycle = 13,282,727
+build jobs   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6404/6404 0:00:10
+2026-06-01 20:17:51.792 | INFO     | yamain.compiler.npu_backend_compiler:compile:293 - assemble model [0] [subgraph_npu_0] b1
+2026-06-01 20:18:23.153 | DEBUG    | backend.ax620e.linker:link_with_dispatcher:1935 - eu_chunk time_limit: False
+2026-06-01 20:18:23.153 | DEBUG    | backend.ax620e.linker:link_with_dispatcher:1936 - eu_chunk only_bysize: True
+2026-06-01 20:19:31.127 | INFO     | backend.ax620e.linker:link_with_dispatcher:2004 - DispatcherQueueType.IO: Generate 49 EU chunks, 6 Dispatcher Chunk
+2026-06-01 20:19:31.128 | INFO     | backend.ax620e.linker:link_with_dispatcher:2004 - DispatcherQueueType.Compute: Generate 70 EU chunks, 12 Dispatcher Chunk
+2026-06-01 20:19:31.128 | INFO     | backend.ax620e.linker:link_with_dispatcher:2005 - EU mcode size: 236 KiB
+2026-06-01 20:19:31.128 | INFO     | backend.ax620e.linker:link_with_dispatcher:2006 - Dispatcher mcode size: 13 KiB
+2026-06-01 20:19:31.128 | INFO     | backend.ax620e.linker:link_with_dispatcher:2007 - Total mcode size: 249 KiB
+2026-06-01 20:19:31.201 | INFO     | yamain.command.build:compile_ptq_model:1368 - fuse 1 subgraph(s)

@@ -1,0 +1,108 @@
++--------------------+----------------------------+
+|     Model Name     |         OnnxModel          |
++--------------------+----------------------------+
+|     Model Info     | Op Set: 13 / IR Version: 7 |
++--------------------+----------------------------+
+| IN: input_features |   float32: (1, 128, 500)   |
+| OUT: audio_embeds  |   float32: (1, 65, 1024)   |
++--------------------+----------------------------+
+|        Add         |            133             |
+|        Cast        |             36             |
+|      Constant      |            292             |
+|        Conv        |             3              |
+|        Div         |             59             |
+|        Erf         |             22             |
+|        Gemm        |            110             |
+|       MatMul       |             37             |
+|        Mul         |             99             |
+|        Pow         |             37             |
+|     ReduceMean     |             74             |
+|      Reshape       |             75             |
+|      Softmax       |             18             |
+|        Sqrt        |             37             |
+|      Squeeze       |             2              |
+|        Sub         |             37             |
+|     Transpose      |             93             |
+|     Unsqueeze      |             56             |
++--------------------+----------------------------+
+|     Model Size     |         711.02 MB          |
++--------------------+----------------------------+
+2026-06-01 20:10:30.470 | WARNING  | yamain.command.build:fill_default:243 - force onnxsim due to found op_type in {'ConstantOfShape', 'Constant'}
+2026-06-01 20:10:30.471 | WARNING  | yamain.command.build:fill_default:314 - apply default output processor configuration to ['audio_embeds']
+2026-06-01 20:10:30.572 | INFO     | yamain.common.util:extract_archive:149 - extract [calibration/input_features_5s.tar] to [/home/ye/Projects/ASX/qwen3_asr_ax630c_port/axmodel/encoder_merged_5s/quant/dataset/input_features]...
+2026-06-01 20:10:32.492 | INFO     | frontend.parsers.onnx_parser:parse_onnx_model_proto:87 - onnxslim...
++--------------------+----------------------------+----------------------------+
+|     Model Name     |         OnnxModel          |         OnnxModel          |
++--------------------+----------------------------+----------------------------+
+|     Model Info     | Op Set: 13 / IR Version: 7 | Op Set: 13 / IR Version: 7 |
++--------------------+----------------------------+----------------------------+
+| IN: input_features |   float32: (1, 128, 500)   |   float32: (1, 128, 500)   |
+| OUT: audio_embeds  |   float32: (1, 65, 1024)   |   float32: (1, 65, 1024)   |
++--------------------+----------------------------+----------------------------+
+|        Add         |            133             |            132             |
+|        Cast        |             36             |             0              |
+|      Constant      |            292             |             0              |
+|        Conv        |             3              |             3              |
+|        Div         |             59             |             59             |
+|        Erf         |             22             |             22             |
+|        Gemm        |            110             |            111             |
+|       MatMul       |             37             |             36             |
+|        Mul         |             99             |             99             |
+|        Pow         |             37             |             37             |
+|     ReduceMean     |             74             |             74             |
+|      Reshape       |             75             |             75             |
+|      Softmax       |             18             |             18             |
+|        Sqrt        |             37             |             37             |
+|      Squeeze       |             2              |             2              |
+|        Sub         |             37             |             37             |
+|     Transpose      |             93             |             93             |
+|     Unsqueeze      |             56             |             56             |
++--------------------+----------------------------+----------------------------+
+|     Model Size     |         711.02 MB          |         711.01 MB          |
++--------------------+----------------------------+----------------------------+
+|    Elapsed Time    |                         19.65 s                         |
++--------------------+----------------------------+----------------------------+
+Building onnx ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:04
+[1;31m2026-06-01 20:11:05.967910995 [E:onnxruntime:, sequential_executor.cc:572 ExecuteKernel] Non-zero status code returned while running Gemm node. Name:'node' Status Message: Gemm: Invalid bias shape for broadcast[m
+Traceback (most recent call last):
+  File "<frozen frontend.graph_ir>", line 1017, in pyrun
+  File "<frozen opset.oprdef>", line 110, in pyrun
+  File "<frozen frontend.operators.onnx.onnx_ops>", line 445, in <lambda>
+  File "<frozen frontend.operators.onnx.utils>", line 170, in onnx_shapefn_or_pyrun
+  File "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/third_party/pulsar2/6.0/extracted/ax_pulsar2_6.0_lite_package/python3/lib/python3.12/site-packages/onnxruntime/capi/onnxruntime_inference_collection.py", line 296, in run
+    return self._sess.run(output_names, input_feed, run_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+onnxruntime.capi.onnxruntime_pybind11_state.InvalidArgument: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Non-zero status code returned while running Gemm node. Name:'node' Status Message: Gemm: Invalid bias shape for broadcast
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen yamain.common.error>", line 13, in wrapper
+  File "<frozen yamain.command.build>", line 825, in optimize_onnx
+  File "<frozen yamain.command.load_model>", line 928, in optimize_onnx_model
+  File "<frozen frontend.graph_ir>", line 469, in forward
+  File "<frozen frontend.graph_ir>", line 446, in update_all_tensors_data
+  File "<frozen frontend.graph_ir>", line 429, in update_op_tensors_data
+  File "<frozen frontend.graph_ir>", line 1019, in pyrun
+Exception: op name: /frontend/conv_out/MatMul, Gemm, pyrun failed.
+input: {'x': Tensor(FP32, name=/frontend/conv_out/MatMul_pre_reshape_out, shape=(65, 7680), offset=0, bit_strides=(245760, 32), memory_type=0), 'w': Tensor(FP32, name=/frontend/conv_out/MatMul_weight, shape=(896, 7680), offset=0, bit_strides=(245760, 32), memory_type=0), 'b': Tensor(FP32, name=/frontend/Constant_13_output_0, shape=(1, 13, 896), offset=0, bit_strides=(372736, 28672, 32), memory_type=0)}
+attrs: {'const_inputs': {}, '_outputs': ['r'], 'alpha': 1.0, 'beta': 1.0, 'transA': 0, 'transB': 1, 'prefix': 'Gemm_2'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen __main__>", line 4, in <module>
+  File "<frozen yamain.main>", line 281, in <module>
+  File "<frozen yamain.main>", line 277, in pulsar2
+  File "<frozen yamain.main>", line 158, in wrapper
+  File "<frozen yamain.common.error>", line 21, in wrapper
+  File "<frozen yamain.command.build>", line 115, in build_error
+  File "<frozen yamain.common.error>", line 13, in wrapper
+  File "<frozen yamain.command.build>", line 560, in build
+  File "<frozen yamain.common.error>", line 21, in wrapper
+  File "<frozen yamain.common.error>", line 71, in error_func
+  File "<frozen yamain.common.error>", line 13, in wrapper
+  File "<frozen yamain.command.build>", line 860, in quant
+  File "<frozen yamain.common.error>", line 21, in wrapper
+  File "<frozen yamain.common.error>", line 73, in error_func
+yamain.common.error.CodeException: (<ErrorCode.OnnxOptimizationError: 13>, Exception("op name: /frontend/conv_out/MatMul, Gemm, pyrun failed.\ninput: {'x': Tensor(FP32, name=/frontend/conv_out/MatMul_pre_reshape_out, shape=(65, 7680), offset=0, bit_strides=(245760, 32), memory_type=0), 'w': Tensor(FP32, name=/frontend/conv_out/MatMul_weight, shape=(896, 7680), offset=0, bit_strides=(245760, 32), memory_type=0), 'b': Tensor(FP32, name=/frontend/Constant_13_output_0, shape=(1, 13, 896), offset=0, bit_strides=(372736, 28672, 32), memory_type=0)}\nattrs: {'const_inputs': {}, '_outputs': ['r'], 'alpha': 1.0, 'beta': 1.0, 'transA': 0, 'transB': 1, 'prefix': 'Gemm_2'}"))

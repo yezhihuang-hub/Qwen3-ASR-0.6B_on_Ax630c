@@ -1,0 +1,20 @@
+{
+  "model_type": "ONNX",
+  "npu_mode": "NPU2",
+  "quant": {
+    "input_configs": [
+      {
+        "tensor_name": "input_features",
+        "calibration_dataset": "./calibration/input_features_5s.tar",
+        "calibration_size": 32,
+        "calibration_format": "Numpy"
+      }
+    ],
+    "calibration_method": "MSE",
+    "precision_analysis": true,
+    "precision_analysis_method": "EndToEnd"
+  },
+  "compiler": {
+    "check": 0
+  }
+}

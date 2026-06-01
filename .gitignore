@@ -1,0 +1,30 @@
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local scratch/build output
+build/
+tmp/
+
+# Heavy generated compiler artifacts kept out of Git history.
+# The deploy package is uploaded as a GitHub Release asset instead.
+axmodel/
+onnx/
+deploy_ax630c/*.axmodel
+deploy_ax630c/*.bin
+deploy_ax630c/models/
+
+# Full checkpoints and generated model weight mirrors
+models/hf/
+models/decoder_hf_axera/
+models/embeddings/
+*.safetensors
+*.partial
+
+# Downloaded toolchains
+third_party/pulsar2/
+
+# Hugging Face and tool caches
+.cache/
+**/.cache/

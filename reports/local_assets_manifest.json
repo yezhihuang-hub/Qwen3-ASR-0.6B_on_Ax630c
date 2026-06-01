@@ -1,0 +1,60 @@
+{
+  "workspace": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port",
+  "rv_models": "/home/ye/Projects/qwen3_asr/asr_rv1126b/deploy/models",
+  "assets": [
+    {
+      "source": "/home/ye/Projects/qwen3_asr/asr_rv1126b/deploy/models/mel_filters.npy",
+      "destination": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/mel_filters.npy",
+      "exists": true,
+      "status": "copied",
+      "bytes": 103040,
+      "sha256": "f02e6b02ec7ce11765c46da84af36917f6ef394bead7169f4eb7524baaacd256"
+    },
+    {
+      "source": "/home/ye/Projects/qwen3_asr/asr_rv1126b/deploy/models/embed_tokens.npy",
+      "destination": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/embeddings/embed_tokens.fp16.npy",
+      "exists": true,
+      "status": "copied",
+      "bytes": 311165056,
+      "sha256": "e8d4448c57626ff9a6396b06f05f0e2c2d9ca4fa2436988f012c171e9f861f2c"
+    },
+    {
+      "source": "/home/ye/Projects/qwen3_asr/asr_rv1126b/deploy/models/tokenizer/tokenizer.json",
+      "destination": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/tokenizer/tokenizer.json",
+      "exists": true,
+      "status": "copied",
+      "bytes": 11429377,
+      "sha256": "bd2a97b55c8f7f9c328c73ee9b9178771037e9f566dfca8e238a063d41cbac92"
+    },
+    {
+      "source": "/home/ye/Projects/qwen3_asr/asr_rv1126b/deploy/models/vad/silero_vad.onnx",
+      "destination": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/vad/silero_vad.onnx",
+      "exists": true,
+      "status": "copied",
+      "bytes": 2313101,
+      "sha256": "6b99cbfd39246b6706f98ec13c7c50c6b299181f2474fa05cbc8046acc274396"
+    },
+    {
+      "source": "/home/ye/Projects/qwen3_asr/asr_rv1126b/deploy/models/data_quant.json",
+      "destination": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/data_quant.rv1126b.json",
+      "exists": true,
+      "status": "copied",
+      "bytes": 583,
+      "sha256": "7d4f2c21de940cff089d16abe810ae15589a979f39d5397ae355eb0adaddcc46"
+    }
+  ],
+  "bf16_embedding": {
+    "source": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/embeddings/embed_tokens.fp16.npy",
+    "destination": "/home/ye/Projects/ASX/qwen3_asr_ax630c_port/models/embeddings/model.embed_tokens.weight.bfloat16.bin",
+    "exists": true,
+    "format": "torch.bfloat16 raw little-endian uint16 payload",
+    "status": "created_from_npy",
+    "source_dtype": "float16",
+    "shape": [
+      151936,
+      1024
+    ],
+    "bytes": 311164928,
+    "sha256": "46546daaac1ff75c00cd22fe0eadcb56ad217c4ffc882c6c848c4a019b211461"
+  }
+}

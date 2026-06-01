@@ -1,0 +1,73 @@
+
+== onnx/qwen3_asr_conv_frontend.5s.rv_chunk.pos_backend.float32.onnx ==
+ir_version: 7
+opsets: {'ai.onnx': 13}
+inputs:
+  input_features: ['1', '128', '500']
+outputs:
+  conv_embeds: ['1', '65', '896']
+node_types:
+  Constant: 14
+  Mul: 6
+  Transpose: 3
+  Reshape: 3
+  Conv: 3
+  Div: 3
+  Erf: 3
+  Add: 3
+  Squeeze: 1
+  Unsqueeze: 1
+  MatMul: 1
+
+== onnx/qwen3_asr_encoder_backend.5s.rv_chunk.pos_backend.float32.onnx ==
+ir_version: 7
+opsets: {'ai.onnx': 13}
+inputs:
+  conv_embeds: ['1', '65', '896']
+outputs:
+  audio_embeds: ['1', '65', '1024']
+node_types:
+  Constant: 280
+  Add: 130
+  Gemm: 110
+  Mul: 93
+  Transpose: 90
+  Reshape: 74
+  ReduceMean: 74
+  Div: 56
+  Unsqueeze: 55
+  Sub: 37
+  Pow: 37
+  Sqrt: 37
+  MatMul: 36
+  Cast: 36
+  Erf: 19
+  Softmax: 18
+  Squeeze: 1
+
+== onnx/qwen3_asr_encoder_merged.5s.rv_chunk.pos_backend.float32.onnx ==
+ir_version: 7
+opsets: {'ai.onnx': 13}
+inputs:
+  input_features: ['1', '128', '500']
+outputs:
+  audio_embeds: ['1', '65', '1024']
+node_types:
+  Constant: 294
+  Add: 133
+  Gemm: 110
+  Mul: 99
+  Transpose: 93
+  Reshape: 77
+  ReduceMean: 74
+  Div: 59
+  Unsqueeze: 56
+  MatMul: 37
+  Sub: 37
+  Pow: 37
+  Sqrt: 37
+  Cast: 36
+  Erf: 22
+  Softmax: 18
+  Conv: 3
+  Squeeze: 2

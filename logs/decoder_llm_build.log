@@ -1,0 +1,75 @@
+Config(
+    model_name='',
+    model_type='qwen3',
+    num_hidden_layers=28,
+    num_attention_heads=16,
+    num_key_value_heads=8,
+    hidden_size=1024,
+    head_dim=128,
+    intermediate_size=3072,
+    vocab_size=151936,
+    rope_theta=1000000,
+    max_position_embeddings=65536,
+    rope_partial_factor=1.0,
+    rope_local_base_freq=None,
+    rms_norm_eps=1e-06,
+    norm_type='rms_norm',
+    hidden_act='silu',
+    hidden_act_param=0.03,
+    scale_depth=1.4,
+    scale_emb=1,
+    dim_model_base=256,
+    origin_model_type='',
+    quant=False,
+    quant_sym=False,
+    quant_bits=4,
+    quant_group_size=128,
+    rs_factor=None,
+    rs_high_freq_factor=1.0,
+    rs_low_freq_factor=1.0,
+    rs_original_max_position_embeddings=None,
+    rs_rope_type='default',
+    rs_alpha=None,
+    rs_beta_fast=None,
+    rs_beta_slow=None,
+    rs_mscale=None,
+    rs_mscale_all_dim=None,
+    rs_mrope_section=[16, 24, 24],
+    interleaved_mrope=False,
+    use_qk_norm=False,
+    qk_norm_after_rope=False,
+    layer_types=[],
+    kv_cache_len=2047
+)
+2026-06-01 21:30:10.929 | SUCCESS  | yamain.command.llm_build:llm_build:258 - prepare llm model done!
+2026-06-01 21:31:38.659 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:31:39.020 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:31:39.137 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:31:39.615 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:35:29.972 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:35:30.216 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:35:31.059 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:35:34.673 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:39:24.148 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:39:24.379 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:39:25.737 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:39:32.822 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:43:17.962 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:43:19.950 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:43:20.337 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:43:30.332 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:47:12.830 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:47:14.374 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:47:14.594 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:47:25.307 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:51:08.473 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:51:08.538 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:51:09.861 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:51:20.188 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:55:01.464 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:55:03.844 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:55:04.957 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+2026-06-01 21:55:14.137 | WARNING  | yasched.test_onepass:remove_useless_job:3377 - 8 redundant metajobs are filtered out!
+building llm decode layers   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 28/28 0:27:25
+building llm post layer   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:11:15
+2026-06-01 22:09:00.226 | SUCCESS  | yamain.command.llm_build:llm_build:368 - build llm model done!
