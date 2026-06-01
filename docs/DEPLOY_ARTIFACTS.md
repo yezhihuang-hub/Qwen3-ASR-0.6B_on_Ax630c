@@ -3,6 +3,12 @@
 Large AX630C-direction deployment binaries are not committed to Git history.
 They are published as a GitHub Release asset.
 
+Release:
+
+```text
+https://github.com/yezhihuang-hub/Qwen3-ASR-0.6B_on_Ax630c/releases/tag/v0.1.0-ax630c-deploy-20260601
+```
+
 Expected package:
 
 ```text
